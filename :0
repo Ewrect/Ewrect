@@ -1,0 +1,134 @@
+int speaker = 13;
+
+int enA = 9;
+int leftForward = 8;
+int leftBackward = 7;
+
+int enB = 10;
+int rightForward = 11;
+int rightBackward = 12;
+
+
+
+
+void setup() {
+  pinMode(enA, OUTPUT);
+  pinMode(enB, OUTPUT);
+  pinMode(leftForward, OUTPUT);
+  pinMode(leftBackward, OUTPUT);
+  pinMode(rightForward, OUTPUT);
+  pinMode(rightBackward, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+ forward(700);
+ pRight(500);
+ forward(4000);
+ pLeft(1100);
+ forward(6000);
+ pRight(500);
+ forward(1000);
+ pRight(500);
+ forward(1200);
+ pRight(600);
+ forward(5000);
+ pLeft(300);
+ forward(400);
+  pLeft(300);
+forward(400);
+}
+
+
+
+void note(int frequency, int duration, int pause) {
+  tone(speaker, frequency);
+  delay(duration);
+  noTone(speaker);
+  delay(pause);
+}
+
+
+
+
+
+void forward(double duration) {
+  analogWrite(enA, 255);
+  analogWrite(enB, 255);
+
+  digitalWrite(leftForward, HIGH);
+  digitalWrite(leftBackward, LOW);
+  digitalWrite(rightForward, HIGH);
+  digitalWrite(rightBackward, LOW);
+  delay(duration);
+
+}
+
+void backward(double duration) {
+  analogWrite(enA, 255);
+  analogWrite(enB, 255);
+
+  digitalWrite(leftForward, LOW);
+  digitalWrite(leftBackward, HIGH);
+  digitalWrite(rightForward, LOW);
+  digitalWrite(rightBackward, HIGH);
+  delay(duration);
+
+}
+
+
+void pLeft(double duration) {
+  analogWrite(enA, 255);
+  analogWrite(enB, 255);
+
+  digitalWrite(leftForward, HIGH);
+  digitalWrite(leftBackward, LOW);
+  digitalWrite(rightForward, LOW);
+  digitalWrite(rightBackward, HIGH);
+  delay(duration);
+
+}
+
+void pause() {
+  digitalWrite(leftForward, LOW);
+  digitalWrite(leftBackward, LOW);
+  digitalWrite(rightForward, LOW);
+  digitalWrite(rightBackward, LOW);
+
+}
+
+void pRight(double duration) {
+  analogWrite(enA, 255);
+  analogWrite(enB, 255);
+
+  digitalWrite(leftForward, LOW);
+  digitalWrite(leftBackward, HIGH);
+  digitalWrite(rightForward, HIGH);
+  digitalWrite(rightBackward, LOW);
+  delay(duration);
+}
+
+void turnLeft(double duration) {
+  analogWrite(enA, 255);
+  analogWrite(enB, 255);
+
+  digitalWrite(leftForward, LOW);
+  digitalWrite(leftBackward, LOW);
+  digitalWrite(rightForward, HIGH);
+  digitalWrite(rightBackward, LOW);
+  delay(duration);
+}
+
+
+
+void turnRight(double duration) {
+  analogWrite(enA, 255);
+  analogWrite(enB, 255);
+
+  digitalWrite(leftForward, HIGH);
+  digitalWrite(leftBackward, LOW);
+  digitalWrite(rightForward, LOW);
+  digitalWrite(rightBackward, LOW);
+  delay(duration);
+
+}
